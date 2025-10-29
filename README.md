@@ -1,1116 +1,615 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITCOFE - Цифровая трансформация будущего</title>
+    <title>ITCOFE | Архитекторы цифрового будущего</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0a0a;
-            --secondary: #ff3e3e;
-            --accent: #00cc88;
-            --accent-light: #66ffcc;
-            --light: #f5f5f7;
-            --dark: #1a1a1a;
-            --text: #0d0d0d;
-            --text-secondary: #404040;
-            --card-bg: #ffffff;
-            --gradient: linear-gradient(135deg, #ff3e3e 0%, #00cc88 100%);
-            --grid-color: rgba(0, 0, 0, 0.03);
-            --glass: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --neon-glow: 0 0 10px rgba(255, 62, 62, 0.7), 0 0 20px rgba(255, 62, 62, 0.5), 0 0 30px rgba(255, 62, 62, 0.3);
+            --primary: #0A0A0A;
+            --secondary: #00F5FF;
+            --accent: #FF2E63;
+            --neon-blue: #00F5FF;
+            --neon-pink: #FF2E63;
+            --neon-purple: #9D4EDD;
+            --dark-bg: #0A0A0A;
+            --card-bg: rgba(30, 30, 30, 0.7);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-primary: linear-gradient(135deg, #00F5FF 0%, #9D4EDD 50%, #FF2E63 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF2E63 0%, #00F5FF 100%);
+            --neon-glow-blue: 0 0 20px rgba(0, 245, 255, 0.7);
+            --neon-glow-pink: 0 0 20px rgba(255, 46, 99, 0.7);
+            --section-spacing: 120px;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
-        
+
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
-            background-color: var(--light);
-            color: var(--text);
+            background: var(--dark-bg);
+            color: white;
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(255, 62, 62, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 204, 136, 0.03) 0%, transparent 25%);
+            position: relative;
         }
-        
+
+        /* Анимированный фон */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 46, 99, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
-        
-        /* Навигация - цифровой стиль */
+
+        /* Современная навигация */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.85);
+            background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 20px 0;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border-bottom: 1px solid var(--glass-border);
         }
-        
-        nav.scrolled {
-            padding: 15px 0;
-            background: rgba(10, 10, 10, 0.95);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-        }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 28px;
-            font-weight: 700;
-            color: var(--light);
+            font-weight: 900;
+            color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
-            letter-spacing: -1px;
-            transition: all 0.3s ease;
-            padding: 10px 20px;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
+            gap: 8px;
         }
-        
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.7s ease;
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
         }
-        
-        .logo:hover::before {
-            left: 100%;
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
-        
-        .logo:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--neon-glow);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-            margin-left: 2px;
-        }
-        
+
         .nav-links {
             display: flex;
+            gap: 40px;
             list-style: none;
         }
-        
-        .nav-links li {
-            margin-left: 20px;
-            position: relative;
-        }
-        
+
         .nav-links a {
+            color: white;
             text-decoration: none;
-            color: var(--light);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-size: 16px;
+            font-weight: 600;
             position: relative;
-            padding: 12px 20px;
-            border-radius: 10px;
-            display: block;
-            overflow: hidden;
-            background: var(--glass);
-            border: 1px solid transparent;
+            padding: 8px 0;
+            transition: all 0.3s ease;
         }
-        
-        .nav-links a::before {
+
+        .nav-links a::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            transition: left 0.4s ease;
-            z-index: -1;
-            opacity: 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--light);
-            border-color: var(--glass-border);
-        }
-        
-        .nav-links a:hover::before {
+            bottom: 0;
             left: 0;
-            opacity: 1;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
-        
-        .nav-links a.active {
-            background: rgba(255, 62, 62, 0.1);
-            border-color: var(--secondary);
-            box-shadow: 0 0 15px rgba(255, 62, 62, 0.3);
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
         }
-        
-        /* Герой секция - цифровая эстетика */
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Герой секция */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(255, 62, 62, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(0, 204, 136, 0.15) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: var(--light);
         }
-        
-        .digital-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-        }
-        
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .floating-element {
-            position: absolute;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            animation: float 15s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(10px, -15px) rotate(5deg); }
-            50% { transform: translate(-5px, -10px) rotate(-3deg); }
-            75% { transform: translate(15px, 5px) rotate(2deg); }
-        }
-        
+
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 800px;
-            margin-left: 10%;
         }
-        
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 700;
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--neon-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
             margin-bottom: 30px;
-            line-height: 1;
-            color: var(--light);
-            letter-spacing: -2px;
-            transform: translateX(-100px);
-            opacity: 0;
-            animation: slideIn 1s ease 0.5s forwards;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
+
+        .hero-subtitle {
+            font-size: 1.3rem;
             color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            transform: translateX(-100px);
-            opacity: 0;
-            animation: slideIn 1s ease 0.8s forwards;
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
-        
-        .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background: transparent;
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid var(--secondary);
-            cursor: pointer;
-            transform: translateX(-100px);
-            opacity: 0;
-            animation: slideIn 1s ease 1.1s forwards;
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            letter-spacing: 0.5px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-        }
-        
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            transition: 0.5s;
-            z-index: -1;
-        }
-        
-        .btn:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: var(--neon-glow);
-        }
-        
-        .btn:hover:before {
-            left: 0;
-        }
-        
-        .btn:active {
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            border-color: var(--accent);
-        }
-        
-        .btn-secondary:hover {
-            box-shadow: 0 0 10px rgba(0, 204, 136, 0.7), 0 0 20px rgba(0, 204, 136, 0.5), 0 0 30px rgba(0, 204, 136, 0.3);
-        }
-        
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--light);
-            font-size: 14px;
+
+        .hero-stats {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-        }
-        
-        .scroll-indicator:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(-50%) translateY(-5px);
-        }
-        
-        .scroll-indicator i {
-            margin-top: 10px;
-            animation: bounce 2s infinite;
-        }
-        
-        /* Секции */
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-        
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 80px;
-            position: relative;
-            color: var(--text);
-            letter-spacing: -1px;
-            padding-left: 20px;
-        }
-        
-        .section-title::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 5px;
-            background: var(--gradient);
-            border-radius: 5px;
-        }
-        
-        /* О компании - цифровая культура */
-        .about {
-            background-color: var(--light);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-        
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--text);
-            font-weight: 600;
-        }
-        
-        .about-text p {
-            margin-bottom: 25px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 40px;
             margin-top: 50px;
         }
-        
-        .stat-item {
-            padding: 40px 30px;
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            cursor: pointer;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+        .stat {
+            text-align: center;
         }
-        
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            transition: left 0.5s ease;
-            z-index: 0;
-            opacity: 0;
-        }
-        
-        .stat-item:hover::before {
-            left: 0;
-            opacity: 0.05;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
+
         .stat-value {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
         }
-        
+
         .stat-label {
-            color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
             text-transform: uppercase;
             letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
         }
-        
-        /* Услуги - цифровая трансформация */
-        .services {
-            background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 100%);
-            color: var(--light);
-        }
-        
-        .services .section-title {
-            color: var(--light);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .service-item {
-            padding: 50px 40px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            transition: left 0.5s ease;
-            z-index: 0;
-            opacity: 0;
-        }
-        
-        .service-item:hover::before {
-            left: 0;
-            opacity: 0.1;
-        }
-        
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            color: var(--accent);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--light);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-item p {
-            color: rgba(255, 255, 255, 0.7);
-            position: relative;
-            z-index: 1;
-            line-height: 1.8;
-        }
-        
-        /* Интернет-магазин */
-        .shop {
-            background-color: var(--light);
-        }
-        
-        .shop-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .shop-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--gradient);
+
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--gradient-primary);
             color: white;
-            border-radius: 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--neon-glow-blue);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid;
+            border-image: var(--gradient-primary) 1;
+            color: white;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        /* Секции */
+        section {
+            padding: var(--section-spacing) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-size: 0.9rem;
-            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 20px;
-            animation: pulse 2s infinite;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .products-grid {
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Проекты */
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 30px;
+            margin-top: 60px;
         }
-        
-        .product-card {
+
+        .project-card {
             background: var(--card-bg);
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-image {
-            height: 200px;
-            background: linear-gradient(135deg, #f5f5f7 0%, #e0e0e0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .product-image i {
-            font-size: 4rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--secondary);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .product-content {
-            padding: 25px;
-        }
-        
-        .product-category {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-        
-        .product-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-        }
-        
-        .product-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .product-btn {
-            padding: 10px 20px;
-            background: transparent;
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .product-btn:hover {
-            background: var(--secondary);
-            color: white;
-        }
-        
-        .product-btn.secondary {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        
-        .product-btn.secondary:hover {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .coming-soon {
-            text-align: center;
-            padding: 80px 0;
-        }
-        
-        .coming-soon i {
-            font-size: 4rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-        
-        .coming-soon h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-        
-        .coming-soon p {
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto 30px;
-        }
-        
-        /* Работы - улучшена интерактивность */
-        .works {
-            background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 100%);
-            color: var(--light);
-        }
-        
-        .works .section-title {
-            color: var(--light);
-        }
-        
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
-        }
-        
-        .work-item {
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            opacity: 0;
-            transform: translateY(30px);
-            background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
             backdrop-filter: blur(10px);
+            position: relative;
         }
-        
-        .work-item.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
-        
-        .work-item:hover {
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
-        
-        .work-img {
-            height: 240px;
+
+        .project-image {
+            height: 220px;
             overflow: hidden;
-            margin-bottom: 0;
+            position: relative;
         }
-        
-        .work-img img {
+
+        .project-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        
-        .work-item:hover .work-img img {
-            transform: scale(1.05);
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
         }
-        
-        .work-content {
+
+        .project-content {
             padding: 30px;
         }
-        
-        .work-content h3 {
+
+        .project-category {
+            display: inline-block;
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--neon-blue);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
             margin-bottom: 15px;
-            font-size: 1.5rem;
-            color: var(--light);
         }
-        
-        .work-content p {
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .project-description {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
             margin-bottom: 20px;
             line-height: 1.6;
         }
-        
-        .work-tags {
+
+        .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-        
-        .work-tag {
-            background: transparent;
-            color: var(--accent);
-            padding: 8px 16px;
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4px 12px;
+            border-radius: 12px;
             font-size: 0.8rem;
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            transition: all 0.3s ease;
         }
-        
-        .work-tag:hover {
-            background: var(--accent);
+
+        /* Технологии */
+        .tech-showcase {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 24px;
+            padding: 80px 60px;
+            margin-top: 80px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: var(--neon-glow-blue);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tech-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
             color: white;
         }
-        
-        /* Контакты - улучшена интерактивность */
-        .contact {
-            background-color: var(--light);
+
+        .tech-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
         }
-        
-        .contact-content {
+
+        /* Контакты */
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
+            margin-top: 60px;
         }
-        
-        .contact-info h3 {
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            color: var(--text);
-        }
-        
-        .contact-info p {
-            margin-bottom: 20px;
-            color: var(--text-secondary);
+
+        .contact-info {
             display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            padding: 12px 0;
-            border-radius: 8px;
+            flex-direction: column;
+            gap: 30px;
         }
-        
-        .contact-info p:hover {
-            color: var(--text);
-            transform: translateX(5px);
-            background: rgba(0, 0, 0, 0.03);
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
         }
-        
-        .contact-info i {
-            margin-right: 15px;
-            color: var(--secondary);
-            width: 20px;
+
+        .contact-icon {
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-details h4 {
             font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
-        
+
+        .contact-details p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
-        
+
         .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 50px;
             height: 50px;
-            background: transparent;
-            color: var(--text);
+            background: var(--card-bg);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
         }
-        
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            transition: left 0.4s ease;
-            z-index: -1;
-        }
-        
-        .social-link:hover::before {
-            left: 0;
-        }
-        
+
         .social-link:hover {
-            color: var(--primary);
-            transform: translate(-3px, -3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
         }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 18px;
-            margin-bottom: 25px;
-            border: none;
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            padding: 15px 20px;
             background: var(--card-bg);
-            color: var(--text);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: white;
             font-size: 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
         }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
+
+        .form-control:focus {
             outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 2px rgba(255, 62, 62, 0.2);
-            transform: translate(-2px, -2px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
         }
-        
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(0, 0, 0, 0.4);
-        }
-        
-        .contact-form textarea {
-            height: 150px;
+
+        textarea.form-control {
+            min-height: 150px;
             resize: vertical;
         }
-        
-        .contact-form .btn {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--secondary);
-            padding: 18px 45px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            width: 100%;
-        }
-        
-        .contact-form .btn:hover {
-            background: var(--secondary);
-            color: white;
-            transform: translate(-3px, -3px);
-            box-shadow: 0 10px 20px rgba(255, 62, 62, 0.2);
-        }
-        
-        /* Благотворительность и спонсорство */
-        .charity {
-            background-color: var(--light);
-        }
-        
-        .charity-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-        
-        .charity-text h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--text);
-            font-weight: 600;
-        }
-        
-        .charity-text p {
-            margin-bottom: 25px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .charity-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        
-        .charity-stat {
-            padding: 30px;
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        
-        .charity-stat:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .charity-stat i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .charity-stat h4 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        
-        .charity-stat p {
-            color: var(--text-secondary);
-        }
-        
-        .sponsorship-programs {
-            margin-top: 80px;
-        }
-        
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .program-card {
-            padding: 40px 30px;
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            cursor: pointer;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .program-card i {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .program-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-        
-        .program-card p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-        
-        .program-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: transparent;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--secondary);
-            border-radius: 8px;
-        }
-        
-        .program-btn:hover {
-            background: var(--secondary);
-            color: white;
-        }
-        
+
         /* Футер */
         footer {
-            background-color: var(--dark);
-            color: white;
+            background: rgba(10, 10, 10, 0.9);
             padding: 80px 0 30px;
             border-top: 1px solid var(--glass-border);
         }
-        
+
         .footer-content {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
+            gap: 50px;
+            margin-bottom: 60px;
         }
-        
-        .footer-logo {
+
+        .footer-info h3 {
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 20px;
-            color: white;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
+
         .footer-info p {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.8;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
-        
+
         .footer-column h4 {
-            margin-bottom: 20px;
             font-size: 1.2rem;
-            color: var(--accent);
+            margin-bottom: 25px;
+            font-weight: 700;
         }
-        
-        .footer-column ul {
+
+        .footer-links {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        
-        .footer-column li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-column a {
+
+        .footer-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: color 0.3s ease;
-            padding: 8px 0;
-            display: block;
-            border-radius: 6px;
-            transition: all 0.3s ease;
         }
-        
-        .footer-column a:hover {
-            color: white;
-            transform: translateX(5px);
-            background: var(--glass);
+
+        .footer-links a:hover {
+            color: var(--neon-blue);
         }
-        
+
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -1118,428 +617,316 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
-        
-        /* Анимации */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        
+
         /* Адаптивность */
         @media (max-width: 1200px) {
-            .hero-content {
-                margin-left: 5%;
+            .container {
+                padding: 0 30px;
             }
             
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .charity-content {
-                grid-template-columns: 1fr;
+            .hero-title {
+                font-size: 3.5rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr 1fr;
             }
         }
-        
+
         @media (max-width: 992px) {
-            .contact-content {
+            .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 50px;
             }
             
-            .hero h1 {
-                font-size: 4rem;
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
-        
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                color: var(--light);
-                font-size: 1.5rem;
-                cursor: pointer;
-                background: var(--glass);
-                border: 1px solid var(--glass-border);
-                padding: 10px;
-                border-radius: 8px;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
             .section-title {
                 font-size: 2.5rem;
             }
             
-            .stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .charity-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .works-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .programs-grid {
+            .tech-grid {
                 grid-template-columns: 1fr;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Новые элементы для улучшения кликабельности */
-        .clickable {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .clickable:hover {
-            transform: translateY(-3px);
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Анимированный фон -->
+    <div class="animated-bg"></div>
+    <div class="grid-overlay"></div>
+
     <!-- Навигация -->
-    <nav id="navbar">
+    <nav>
         <div class="container nav-container">
-            <a href="#" class="logo">ITCO<span>FE</span></a>
+            <a href="#" class="logo">
+                ITCOFE
+                <div class="logo-dot"></div>
+            </a>
             <ul class="nav-links">
-                <li><a href="#about">О компании</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#shop" class="active">Магазин</a></li>
-                <li><a href="#works">Проекты</a></li>
-                <li><a href="#charity">Благотворительность</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#tech">Технологии</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
     <!-- Герой секция -->
     <section class="hero">
-        <div class="digital-grid"></div>
-        <div class="floating-elements" id="floatingElements"></div>
-        <div class="container hero-content">
-            <h1>ЦИФРОВАЯ ТРАНСФОРМАЦИЯ</h1>
-            <p>ITCOFE создает будущее цифровых технологий. Мы разрабатываем инновационные решения, которые меняют правила игры в эпоху цифровой экономики.</p>
-            <a href="#shop" class="btn">Исследовать продукты</a>
-            <a href="#charity" class="btn btn-secondary">Узнать о благотворительности</a>
-        </div>
-        <div class="scroll-indicator" onclick="scrollToSection('about')">
-            Узнать больше
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- О компании -->
-    <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">ЦИФРОВАЯ КУЛЬТУРА</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Инновации как образ жизни</h3>
-                    <p>ITCOFE была основана в 2010 году с миссией трансформировать цифровой ландшафт. Мы верим, что технологии должны служить людям и улучшать качество жизни.</p>
-                    <p>Наша команда состоит из более чем 2000 талантливых специалистов, которые работают на стыке технологий и бизнеса, создавая решения для цифровой эпохи.</p>
-                    <p>Мы гордимся тем, что наши продукты используют более 500 компаний из списка Fortune 1000, и мы продолжаем расширять границы возможного в технологической индустрии.</p>
-                    
-                    <div class="stats">
-                        <div class="stat-item clickable">
-                            <div class="stat-value">30B+</div>
-                            <div class="stat-label">Капитализация</div>
-                        </div>
-                        <div class="stat-item clickable">
-                            <div class="stat-value">15</div>
-                            <div class="stat-label">Стран присутствия</div>
-                        </div>
-                        <div class="stat-item clickable">
-                            <div class="stat-value">2000+</div>
-                            <div class="stat-label">Сотрудников</div>
-                        </div>
-                        <div class="stat-item clickable">
-                            <div class="stat-value">500+</div>
-                            <div class="stat-label">Клиентов Fortune 1000</div>
-                        </div>
-                    </div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i>
+                    Инновации с 2010 года
                 </div>
-                <div class="about-text">
-                    <h3>Наша философия</h3>
-                    <p>Мы верим в силу цифровой трансформации как инструмента создания лучшего будущего. Наши решения построены на принципах открытости, инноваций и устойчивого развития.</p>
-                    <p>Цифровая культура в ITCOFE — это постоянное обучение, экспериментирование и стремление к совершенству. Мы поощряем нестандартное мышление и смелые идеи.</p>
-                    <p>Каждый наш продукт — это шаг к более connected, intelligent и sustainable будущему.</p>
+                <h1 class="hero-title">Архитекторы цифрового будущего</h1>
+                <p class="hero-subtitle">Создаем технологии, которые переопределяют возможности человечества. От квантовых вычислений до нейроинтерфейсов — мы строим будущее, о котором другие только мечтают.</p>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#projects" class="btn">Исследовать проекты <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-outline">Присоединиться к нам</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">$30B+</div>
+                        <div class="stat-label">Капитализация</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">150+</div>
+                        <div class="stat-label">Проектов</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Лет инноваций</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Услуги -->
-    <section id="services" class="services">
+    <!-- Проекты -->
+    <section id="projects">
         <div class="container">
-            <h2 class="section-title">ЦИФРОВЫЕ РЕШЕНИЯ</h2>
-            <div class="services-grid">
-                <div class="service-item">
-                    <div class="service-icon">
+            <div class="section-header">
+                <div class="section-label">Наши инновации</div>
+                <h2 class="section-title">Прорывные проекты</h2>
+                <p class="section-subtitle">Технологии, которые меняют правила игры в глобальном масштабе</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Проект 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Quantum Nexus">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Квантовые вычисления</span>
+                        <h3 class="project-title">Quantum Nexus</h3>
+                        <p class="project-description">Первая в мире коммерческая квантовая сеть, обеспечивающая мгновенную передачу данных на любые расстояния.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Квантовая запутанность</span>
+                            <span class="tech-tag">QKD</span>
+                            <span class="tech-tag">Квантовые процессоры</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="NeuraLink AI">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Искусственный интеллект</span>
+                        <h3 class="project-title">NeuraLink AI</h3>
+                        <p class="project-description">Когнитивная платформа, способная обучаться и адаптироваться в реальном времени без дополнительного программирования.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Глубокое обучение</span>
+                            <span class="tech-tag">Нейросети</span>
+                            <span class="tech-tag">AGI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="BioSync">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Биотехнологии</span>
+                        <h3 class="project-title">BioSync Implants</h3>
+                        <p class="project-description">Биосовместимые импланты, усиливающие когнитивные способности и обеспечивающие прямой интерфейс мозг-компьютер.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Нейроинтерфейсы</span>
+                            <span class="tech-tag">Биосенсоры</span>
+                            <span class="tech-tag">Нанотехнологии</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="EcoSphere">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Устойчивые технологии</span>
+                        <h3 class="project-title">EcoSphere AI</h3>
+                        <p class="project-description">Глобальная система мониторинга и оптимизации климата с предиктивной аналитикой экологических изменений.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AI Аналитика</span>
+                            <span class="tech-tag">IoT Сенсоры</span>
+                            <span class="tech-tag">Климатическое моделирование</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 5 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="SpaceNet">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Космические технологии</span>
+                        <h3 class="project-title">SpaceNet Constellation</h3>
+                        <p class="project-description">Спутниковая сеть нового поколения, обеспечивающая глобальный охват интернетом со скоростью 10 Гбит/с.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">LEO Спутники</span>
+                            <span class="tech-tag">Квантовая связь</span>
+                            <span class="tech-tag">Фотонные вычисления</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 6 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="MetaCore">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Метавселенные</span>
+                        <h3 class="project-title">MetaCore Platform</h3>
+                        <p class="project-description">Децентрализованная платформа для создания и взаимодействия с фотореалистичными метавселенными.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Web3</span>
+                            <span class="tech-tag">VR/AR</span>
+                            <span class="tech-tag">Blockchain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Технологии -->
+    <section id="tech">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Наш арсенал</div>
+                <h2 class="section-title">Передовые технологии</h2>
+                <p class="section-subtitle">Инструменты и платформы, которые позволяют нам создавать будущее</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="tech-name">Квантовые вычисления</h3>
+                    <p class="tech-description">Используем квантовые процессоры для решения задач, недоступных классическим компьютерам</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3>Искусственный интеллект</h3>
-                    <p>Разрабатываем передовые AI-решения для автоматизации бизнес-процессов, анализа данных и создания интеллектуальных систем.</p>
+                    <h3 class="tech-name">Искусственный интеллект</h3>
+                    <p class="tech-description">Самообучающиеся системы, способные к творческому мышлению и решению сложных проблем</p>
                 </div>
-                <div class="service-item">
-                    <div class="service-icon">
-                        <i class="fas fa-link"></i>
+                
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-dna"></i>
                     </div>
-                    <h3>Блокчейн технологии</h3>
-                    <p>Создаем безопасные и прозрачные блокчейн-решения для финансового сектора, логистики и управления цепочками поставок.</p>
+                    <h3 class="tech-name">Биотехнологии</h3>
+                    <p class="tech-description">Синтез биологии и технологий для создания революционных медицинских решений</p>
                 </div>
-                <div class="service-item">
-                    <div class="service-icon">
+                
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="tech-name">Космические технологии</h3>
+                    <p class="tech-description">Разработка систем для освоения космоса и создания инфраструктуры за пределами Земли</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Кибербезопасность</h3>
-                    <p>Обеспечиваем комплексную защиту цифровых активов с использованием машинного обучения и передовых технологий.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Интернет-магазин -->
-    <section id="shop" class="shop">
-        <div class="container">
-            <div class="shop-header">
-                <span class="shop-badge">НОВИНКА</span>
-                <h2 class="section-title">ИНТЕРНЕТ-МАГАЗИН</h2>
-                <p>Откройте для себя наши цифровые продукты и решения</p>
-            </div>
-            
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-robot"></i>
-                        <span class="product-badge">ХИТ</span>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-category">AI решение</div>
-                        <h3 class="product-title">NeuraMind Pro</h3>
-                        <p class="product-description">Продвинутая платформа искусственного интеллекта для бизнес-аналитики и прогнозирования</p>
-                        <div class="product-footer">
-                            <div class="product-price">$299</div>
-                            <div class="product-actions">
-                                <button class="product-btn secondary">Подробнее</button>
-                                <button class="product-btn">В корзину</button>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="tech-name">Кибербезопасность</h3>
+                    <p class="tech-description">Квантово-устойчивые системы защиты для цифровой инфраструктуры будущего</p>
                 </div>
                 
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-lock"></i>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <div class="product-content">
-                        <div class="product-category">Безопасность</div>
-                        <h3 class="product-title">SecureChain Enterprise</h3>
-                        <p class="product-description">Корпоративное блокчейн-решение для безопасных транзакций и хранения данных</p>
-                        <div class="product-footer">
-                            <div class="product-price">$499</div>
-                            <div class="product-actions">
-                                <button class="product-btn secondary">Подробнее</button>
-                                <button class="product-btn">В корзину</button>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="tech-name">Web3 & Blockchain</h3>
+                    <p class="tech-description">Децентрализованные системы для создания прозрачной и безопасной цифровой экономики</p>
+                </div>
+            </div>
+            
+            <div class="tech-showcase">
+                <div class="section-header">
+                    <div class="section-label">Лаборатории будущего</div>
+                    <h2 class="section-title">Исследовательские центры</h2>
+                    <p class="section-subtitle">15 научно-исследовательских центров по всему миру, где рождаются прорывные технологии</p>
                 </div>
                 
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-cloud"></i>
-                        <span class="product-badge">НОВИНКА</span>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+                    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Центр квантовых исследований</h4>
+                        <p style="color: rgba(255, 255, 255, 0.7);">Калифорния, США - Разработка квантовых алгоритмов и создание квантовых процессоров</p>
                     </div>
-                    <div class="product-content">
-                        <div class="product-category">Облако</div>
-                        <h3 class="product-title">CloudFlow Suite</h3>
-                        <p class="product-description">Комплексное облачное решение для управления бизнес-процессами и данными</p>
-                        <div class="product-footer">
-                            <div class="product-price">$199</div>
-                            <div class="product-actions">
-                                <button class="product-btn secondary">Подробнее</button>
-                                <button class="product-btn">В корзину</button>
-                            </div>
-                        </div>
+                    
+                    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Лаборатория нейроинтерфейсов</h4>
+                        <p style="color: rgba(255, 255, 255, 0.7);">Цюрих, Швейцария - Исследования в области прямого взаимодействия мозг-компьютер</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="coming-soon">
-                <i class="fas fa-tools"></i>
-                <h3>Раздел в разработке</h3>
-                <p>Мы активно работаем над расширением ассортимента нашего магазина. Скоро здесь появятся новые цифровые продукты и услуги.</p>
-                <a href="#contact" class="btn">Узнать о новинках первым</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Работы -->
-    <section id="works" class="works">
-        <div class="container">
-            <h2 class="section-title">НАШИ ПРОЕКТЫ</h2>
-            <div class="works-grid">
-                <div class="work-item">
-                    <div class="work-img">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI платформа">
-                    </div>
-                    <div class="work-content">
-                        <h3>NeuraMind AI</h3>
-                        <p>Передовая платформа искусственного интеллекта для анализа больших данных и прогнозирования трендов. Используется финансовыми институтами по всему миру.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">AI</span>
-                            <span class="work-tag">Machine Learning</span>
-                            <span class="work-tag">Big Data</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="work-item">
-                    <div class="work-img">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Блокчейн решение">
-                    </div>
-                    <div class="work-content">
-                        <h3>SecureChain</h3>
-                        <p>Инновационная блокчейн-платформа для безопасных транзакций и хранения данных. Применяется в государственном и финансовом секторах.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">Blockchain</span>
-                            <span class="work-tag">Security</span>
-                            <span class="work-tag">FinTech</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="work-item">
-                    <div class="work-img">
-                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Кибербезопасность">
-                    </div>
-                    <div class="work-content">
-                        <h3>CyberShield</h3>
-                        <p>Комплексная система кибербезопасности с использованием машинного обучения для обнаружения и предотвращения угроз в реальном времени.</p>
-                        <div class="work-tags">
-                            <span class="work-tag">Cybersecurity</span>
-                            <span class="work-tag">ML</span>
-                            <span class="work-tag">Threat Detection</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Благотворительность и спонсорство -->
-    <section id="charity" class="charity">
-        <div class="container">
-            <h2 class="section-title">БЛАГОТВОРИТЕЛЬНОСТЬ И СПОНСОРСТВО</h2>
-            <div class="charity-content">
-                <div class="charity-text">
-                    <h3>Наша социальная ответственность</h3>
-                    <p>В ITCOFE мы верим, что технологии должны служить не только бизнесу, но и обществу. С момента основания компании мы активно участвуем в благотворительных и социальных проектах по всему миру.</p>
-                    <p>Наша цель — использовать технологии для решения глобальных проблем, таких как неравенство в образовании, доступ к медицинским услугам и защита окружающей среды.</p>
-                    <p>Ежегодно мы направляем не менее 5% нашей прибыли на благотворительные инициативы и спонсорство образовательных программ в области технологий.</p>
-                </div>
-                <div class="charity-text">
-                    <h3>Наши достижения</h3>
-                    <p>За последние 5 лет мы поддержали более 100 образовательных программ по всему миру, предоставили технологии для 50 медицинских учреждений и помогли более 1000 студентов получить образование в области IT.</p>
-                    <p>Наши сотрудники активно участвуют в волонтерских программах, посвящая более 10 000 часов в год социальным проектам.</p>
-                </div>
-            </div>
-            
-            <div class="charity-stats">
-                <div class="charity-stat">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h4>100+</h4>
-                    <p>Образовательных программ</p>
-                </div>
-                <div class="charity-stat">
-                    <i class="fas fa-hands-helping"></i>
-                    <h4>10,000+</h4>
-                    <p>Волонтерских часов в год</p>
-                </div>
-                <div class="charity-stat">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h4>5%</h4>
-                    <p>Прибыли на благотворительность</p>
-                </div>
-                <div class="charity-stat">
-                    <i class="fas fa-globe"></i>
-                    <h4>25</h4>
-                    <p>Стран, где мы помогаем</p>
-                </div>
-            </div>
-            
-            <div class="sponsorship-programs">
-                <h3 class="section-title">НАШИ ПРОГРАММЫ</h3>
-                <div class="programs-grid">
-                    <div class="program-card">
-                        <i class="fas fa-laptop-code"></i>
-                        <h4>IT Образование</h4>
-                        <p>Поддержка образовательных программ в области технологий для молодежи из социально незащищенных слоев населения.</p>
-                        <a href="#" class="program-btn">Узнать больше</a>
-                    </div>
-                    <div class="program-card">
-                        <i class="fas fa-heartbeat"></i>
-                        <h4>Медицинские технологии</h4>
-                        <p>Предоставление передовых технологий для медицинских учреждений в развивающихся странах.</p>
-                        <a href="#" class="program-btn">Узнать больше</a>
-                    </div>
-                    <div class="program-card">
-                        <i class="fas fa-leaf"></i>
-                        <h4>Экологические инициативы</h4>
-                        <p>Финансирование и технологическая поддержка проектов по защите окружающей среды и устойчивому развитию.</p>
-                        <a href="#" class="program-btn">Узнать больше</a>
+                    
+                    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Институт космических технологий</h4>
+                        <p style="color: rgba(255, 255, 255, 0.7);">Токио, Япония - Разработка систем для освоения Луны и Марса</p>
                     </div>
                 </div>
             </div>
@@ -1547,30 +934,77 @@
     </section>
 
     <!-- Контакты -->
-    <section id="contact" class="contact">
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title">СВЯЖИТЕСЬ С НАМИ</h2>
-            <div class="contact-content">
+            <div class="section-header">
+                <div class="section-label">Свяжитесь с нами</div>
+                <h2 class="section-title">Начните сотрудничество</h2>
+                <p class="section-subtitle">Готовы изменить будущее вместе с нами? Мы всегда открыты для новых вызовов</p>
+            </div>
+            
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Наши контакты</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>Адрес:</strong> 123 Innovation Drive, Silicon Valley, CA 94025</p>
-                    <p><i class="fas fa-phone"></i> <strong>Телефон:</strong> +1 (650) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@itcofe.com</p>
-                    <p><i class="fas fa-clock"></i> <strong>Часы работы:</strong> Пн-Пт: 9:00-18:00</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Главный офис</h4>
+                            <p>Innovation District, Tech City</p>
+                            <p>Silicon Valley, CA 94025</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Телефон</h4>
+                            <p>+1 (650) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>innovation@itcofe.com</p>
+                        </div>
+                    </div>
                     
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="Ваше имя" required>
-                    <input type="email" placeholder="Ваш email" required>
-                    <input type="text" placeholder="Тема" required>
-                    <textarea placeholder="Ваше сообщение" required></textarea>
-                    <button type="submit" class="btn">Отправить сообщение</button>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" class="form-control" placeholder="Введите ваше имя" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Введите ваш email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Тема</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Тема сообщения" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" class="form-control" placeholder="Опишите ваш проект или идею" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="align-self: flex-start;">Отправить заявку <i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
@@ -1581,45 +1015,92 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <div class="footer-logo">ITCO<span>FE</span></div>
-                    <p>Смелые решения для цифровой эпохи. Бросаем вызов традициям, создавая технологии, которые меняют правила игры.</p>
+                    <h3>ITCOFE</h3>
+                    <p>Создаем технологии, которые определяют будущее человечества. 15 лет инноваций, 150+ прорывных проектов, бесконечные возможности.</p>
                 </div>
+                
                 <div class="footer-column">
                     <h4>Компания</h4>
-                    <ul>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#services">Услуги</a></li>
-                        <li><a href="#shop">Магазин</a></li>
-                        <li><a href="#works">Проекты</a></li>
-                        <li><a href="#charity">Благотворительность</a></li>
+                    <ul class="footer-links">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Команда</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Новости</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h4>Услуги</h4>
-                    <ul>
-                        <li><a href="#">Искусственный интеллект</a></li>
-                        <li><a href="#">Блокчейн</a></li>
-                        <li><a href="#">Кибербезопасность</a></li>
-                        <li><a href="#">Облачные решения</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-column">
                     <h4>Ресурсы</h4>
-                    <ul>
-                        <li><a href="#">Блог</a></li>
-                        <li><a href="#">Документация</a></li>
-                        <li><a href="#">Поддержка</a></li>
-                        <li><a href="#">Карьера</a></li>
+                    <ul class="footer-links">
+                        <li><a href="#">Исследования</a></li>
+                        <li><a href="#">Публикации</a></li>
+                        <li><a href="#">Технологии</a></li>
+                        <li><a href="#">Форум</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Правовая информация</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                        <li><a href="#">Патенты</a></li>
+                        <li><a href="#">Лицензии</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 ITCOFE. Все права защищены. Капитализация: $30 млрд.</p>
+                <p>&copy; 2023 ITCOFE Technologies. Все права защищены. Капитализация: $30+ млрд.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Параллакс эффект для фона
+        document.addEventListener('mousemove', (e) => {
+            const bg = document.querySelector('.animated-bg');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            bg.style.transform = `translate(-${x * 20}px, -${y * 20}px)`;
+        });
+
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за элементами
+        document.querySelectorAll('.project-card, .tech-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Изменение навигации при скролле
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.backdropFilter = 'blur(30px)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.9)';
+                nav.style.backdropFilter = 'blur(20px)';
+            }
+        });
+
         // Плавная прокрутка для навигационных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1631,132 +1112,9 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
-                }
-            });
-        });
-        
-        // Функция для прокрутки к секции
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                window.scrollTo({
-                    top: section.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
-        
-        // Анимация появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        // Наблюдаем за элементами, которые должны появляться при скролле
-        document.querySelectorAll('.work-item, .service-item, .stat-item, .product-card, .charity-stat, .program-card').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Изменение навигации при скролле
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-        
-        // Обработка формы
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const submitBtn = this.querySelector('.btn');
-                submitBtn.textContent = 'Отправка...';
-                submitBtn.disabled = true;
-                
-                // Имитация отправки формы
-                setTimeout(() => {
-                    submitBtn.textContent = 'Сообщение отправлено!';
-                    submitBtn.style.backgroundColor = 'var(--accent)';
-                    submitBtn.style.borderColor = 'var(--accent)';
-                    
-                    setTimeout(() => {
-                        submitBtn.textContent = 'Отправить сообщение';
-                        submitBtn.disabled = false;
-                        submitBtn.style.backgroundColor = '';
-                        submitBtn.style.borderColor = 'var(--secondary)';
-                        contactForm.reset();
-                    }, 3000);
-                }, 1500);
-            });
-        }
-        
-        // Добавление класса hover для всех интерактивных элементов
-        document.querySelectorAll('.clickable, .btn, .nav-links a, .social-link, .work-item, .stat-item, .service-item, .product-card, .product-btn, .charity-stat, .program-card').forEach(el => {
-            el.addEventListener('mouseenter', function() {
-                this.style.cursor = 'pointer';
-            });
-        });
-        
-        // Создание плавающих элементов в герое
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            const elementCount = 8;
-            
-            for (let i = 0; i < elementCount; i++) {
-                const element = document.createElement('div');
-                element.classList.add('floating-element');
-                
-                // Случайные размеры и позиции
-                const size = Math.random() * 60 + 20;
-                const posX = Math.random() * 90;
-                const posY = Math.random() * 90;
-                const delay = Math.random() * 15;
-                const duration = Math.random() * 10 + 15;
-                
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${posX}%`;
-                element.style.top = `${posY}%`;
-                element.style.animationDelay = `${delay}s`;
-                element.style.animationDuration = `${duration}s`;
-                
-                container.appendChild(element);
-            }
-        }
-        
-        // Инициализация плавающих элементов после загрузки страницы
-        window.addEventListener('load', createFloatingElements);
-        
-        // Обработка кнопок в магазине
-        document.querySelectorAll('.product-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (this.textContent === 'В корзину') {
-                    this.textContent = 'Добавлено!';
-                    this.style.backgroundColor = 'var(--accent)';
-                    this.style.borderColor = 'var(--accent)';
-                    this.style.color = 'white';
-                    
-                    setTimeout(() => {
-                        this.textContent = 'В корзину';
-                        this.style.backgroundColor = '';
-                        this.style.borderColor = 'var(--secondary)';
-                        this.style.color = 'var(--secondary)';
-                    }, 2000);
                 }
             });
         });
