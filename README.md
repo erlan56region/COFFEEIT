@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +44,6 @@
             position: relative;
         }
 
-        /* Индикатор загрузки */
         .loader {
             position: fixed;
             top: 0;
@@ -93,7 +93,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Анимированный фон */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -138,7 +137,6 @@
             padding: 0 40px;
         }
 
-        /* Современная навигация */
         nav {
             position: fixed;
             top: 0;
@@ -214,7 +212,6 @@
             width: 100%;
         }
 
-        /* Мобильное меню */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -283,7 +280,6 @@
             visibility: visible;
         }
 
-        /* Герой секция */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -355,7 +351,6 @@
             letter-spacing: 1px;
         }
 
-        /* Кнопки */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -390,7 +385,6 @@
             color: white;
         }
 
-        /* Секции */
         section {
             padding: var(--section-spacing) 0;
         }
@@ -428,7 +422,6 @@
             margin: 0 auto;
         }
 
-        /* Проекты */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -526,7 +519,6 @@
             font-size: 0.8rem;
         }
 
-        /* Технологии */
         .tech-showcase {
             background: rgba(30, 30, 30, 0.5);
             border-radius: 24px;
@@ -577,7 +569,6 @@
             line-height: 1.6;
         }
 
-        /* Контакты */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -694,7 +685,6 @@
             display: none;
         }
 
-        /* Футер */
         footer {
             background: rgba(10, 10, 10, 0.9);
             padding: 80px 0 30px;
@@ -754,7 +744,6 @@
             font-size: 0.9rem;
         }
 
-        /* Кнопка "Наверх" */
         .scroll-to-top {
             position: fixed;
             bottom: 30px;
@@ -784,16 +773,13 @@
             transform: translateY(-5px);
         }
 
-        /* Адаптивность */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 30px;
             }
-            
             .hero-title {
                 font-size: 3.5rem;
             }
-            
             .footer-content {
                 grid-template-columns: 1fr 1fr;
             }
@@ -804,11 +790,9 @@
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
-            
             .tech-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -818,36 +802,28 @@
             .nav-links {
                 display: none;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
             .hero-title {
                 font-size: 2.5rem;
             }
-            
             .section-title {
                 font-size: 2.5rem;
             }
-            
             .tech-grid {
                 grid-template-columns: 1fr;
             }
-            
             .footer-content {
                 grid-template-columns: 1fr;
             }
-            
             .container {
                 padding: 0 20px;
             }
-            
             .hero-stats {
                 flex-direction: column;
                 gap: 20px;
             }
-            
             .tech-showcase {
                 padding: 40px 20px;
             }
@@ -855,7 +831,6 @@
     </style>
 </head>
 <body>
-    <!-- Индикатор загрузки -->
     <div class="loader" id="pageLoader">
         <div class="loader-content">
             <div class="loader-logo">ITCOFE</div>
@@ -865,11 +840,9 @@
         </div>
     </div>
 
-    <!-- Анимированный фон -->
     <div class="animated-bg"></div>
     <div class="grid-overlay"></div>
 
-    <!-- Навигация -->
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo">
@@ -887,7 +860,6 @@
         </div>
     </nav>
 
-    <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobileMenu">
         <ul class="mobile-nav-links">
             <li><a href="#projects">Проекты</a></li>
@@ -897,7 +869,6 @@
     </div>
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- Герой секция -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -929,7 +900,6 @@
         </div>
     </section>
 
-    <!-- Проекты -->
     <section id="projects">
         <div class="container">
             <div class="section-header">
@@ -939,7 +909,6 @@
             </div>
             
             <div class="projects-grid">
-                <!-- Проект 1 -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Quantum Nexus">
@@ -956,7 +925,6 @@
                     </div>
                 </div>
                 
-                <!-- Проект 2 -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="NeuraLink AI">
@@ -973,7 +941,6 @@
                     </div>
                 </div>
                 
-                <!-- Проект 3 -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="BioSync">
@@ -990,7 +957,6 @@
                     </div>
                 </div>
                 
-                <!-- Проект 4 -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="EcoSphere">
@@ -1007,7 +973,6 @@
                     </div>
                 </div>
                 
-                <!-- Проект 5 -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="SpaceNet">
@@ -1024,7 +989,6 @@
                     </div>
                 </div>
                 
-                <!-- Проект 6 -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="MetaCore">
@@ -1044,7 +1008,6 @@
         </div>
     </section>
 
-    <!-- Технологии -->
     <section id="tech">
         <div class="container">
             <div class="section-header">
@@ -1130,7 +1093,6 @@
         </div>
     </section>
 
-    <!-- Контакты -->
     <section id="contact">
         <div class="container">
             <div class="section-header">
@@ -1215,7 +1177,6 @@
         </div>
     </section>
 
-    <!-- Футер -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1261,13 +1222,11 @@
         </div>
     </footer>
 
-    <!-- Кнопка "Наверх" -->
     <a href="#" class="scroll-to-top" id="scrollToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <script>
-        // Индикатор загрузки
         window.addEventListener('load', function() {
             const loader = document.getElementById('pageLoader');
             const progress = document.getElementById('loaderProgress');
@@ -1286,7 +1245,6 @@
             }, 50);
         });
 
-        // Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -1303,7 +1261,6 @@
             document.body.style.overflow = '';
         });
 
-        // Закрытие меню при клике на ссылку
         document.querySelectorAll('.mobile-nav-links a').forEach(link => {
             link.addEventListener('click', function() {
                 mobileMenu.classList.remove('active');
@@ -1312,7 +1269,6 @@
             });
         });
 
-        // Параллакс эффект для фона
         document.addEventListener('mousemove', (e) => {
             const bg = document.querySelector('.animated-bg');
             const x = e.clientX / window.innerWidth;
@@ -1321,7 +1277,6 @@
             bg.style.transform = `translate(-${x * 20}px, -${y * 20}px)`;
         });
 
-        // Анимация появления элементов при скролле
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1336,7 +1291,6 @@
             });
         }, observerOptions);
 
-        // Наблюдаем за элементами
         document.querySelectorAll('.project-card, .tech-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -1344,7 +1298,6 @@
             observer.observe(el);
         });
 
-        // Изменение навигации при скролле
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             const scrollToTop = document.getElementById('scrollToTop');
@@ -1360,7 +1313,6 @@
             }
         });
 
-        // Плавная прокрутка для навигационных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1378,7 +1330,6 @@
             });
         });
 
-        // Валидация формы
         const contactForm = document.getElementById('contactForm');
         
         contactForm.addEventListener('submit', function(e) {
@@ -1386,7 +1337,6 @@
             
             let isValid = true;
             
-            // Валидация имени
             const name = document.getElementById('name');
             const nameError = document.getElementById('nameError');
             if (name.value.trim() === '') {
@@ -1396,7 +1346,6 @@
                 nameError.style.display = 'none';
             }
             
-            // Валидация email
             const email = document.getElementById('email');
             const emailError = document.getElementById('emailError');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1407,7 +1356,6 @@
                 emailError.style.display = 'none';
             }
             
-            // Валидация темы
             const subject = document.getElementById('subject');
             const subjectError = document.getElementById('subjectError');
             if (subject.value.trim() === '') {
@@ -1417,7 +1365,6 @@
                 subjectError.style.display = 'none';
             }
             
-            // Валидация сообщения
             const message = document.getElementById('message');
             const messageError = document.getElementById('messageError');
             if (message.value.trim() === '') {
@@ -1427,15 +1374,12 @@
                 messageError.style.display = 'none';
             }
             
-            // Если форма валидна, показываем сообщение об успехе
             if (isValid) {
                 const formSuccess = document.getElementById('formSuccess');
                 formSuccess.style.display = 'block';
                 
-                // Очищаем форму
                 contactForm.reset();
                 
-                // Скрываем сообщение об успехе через 5 секунд
                 setTimeout(() => {
                     formSuccess.style.display = 'none';
                 }, 5000);
