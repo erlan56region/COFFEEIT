@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITCoffee | Технологии с душой</title>
+    <title>ITCoffee | Архитекторы цифрового будущего</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -14,15 +14,13 @@
             --neon-blue: #00F5FF;
             --neon-pink: #FF2E63;
             --neon-purple: #9D4EDD;
-            --coffee-brown: #8B4513;
-            --coffee-light: #D2691E;
             --dark-bg: #0A0A0A;
             --card-bg: rgba(30, 30, 30, 0.7);
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --gradient-primary: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #FF2E63 100%);
-            --gradient-secondary: linear-gradient(135deg, #FF2E63 0%, #D2691E 100%);
-            --neon-glow-blue: 0 0 20px rgba(139, 69, 19, 0.7);
+            --gradient-primary: linear-gradient(135deg, #00F5FF 0%, #9D4EDD 50%, #FF2E63 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF2E63 0%, #00F5FF 100%);
+            --neon-glow-blue: 0 0 20px rgba(0, 245, 255, 0.7);
             --neon-glow-pink: 0 0 20px rgba(255, 46, 99, 0.7);
             --section-spacing: 120px;
         }
@@ -103,9 +101,9 @@
             height: 100%;
             z-index: -2;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(255, 46, 99, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(210, 105, 30, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 40% 80%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
             animation: bgPulse 15s ease-in-out infinite;
         }
 
@@ -121,8 +119,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(139, 69, 19, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 69, 19, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -1;
             animation: gridMove 20s linear infinite;
@@ -207,7 +205,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--coffee-light);
+            color: var(--neon-blue);
         }
 
         .nav-links a:hover::after {
@@ -261,7 +259,7 @@
         }
 
         .mobile-nav-links a:hover {
-            color: var(--coffee-light);
+            color: var(--neon-blue);
         }
 
         .menu-overlay {
@@ -300,14 +298,14 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(139, 69, 19, 0.1);
-            color: var(--coffee-light);
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--neon-blue);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 30px;
-            border: 1px solid rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(0, 245, 255, 0.3);
         }
 
         .hero-title {
@@ -371,7 +369,7 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
         }
 
         .btn-outline {
@@ -485,8 +483,8 @@
 
         .project-category {
             display: inline-block;
-            background: rgba(139, 69, 19, 0.1);
-            color: var(--coffee-light);
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--neon-blue);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -547,7 +545,7 @@
 
         .tech-card:hover {
             transform: translateY(-5px);
-            border-color: var(--coffee-light);
+            border-color: var(--neon-blue);
             box-shadow: var(--neon-glow-blue);
         }
 
@@ -661,8 +659,8 @@
 
         .form-control:focus {
             outline: none;
-            border-color: var(--coffee-light);
-            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
         }
 
         textarea.form-control {
@@ -678,8 +676,8 @@
         }
 
         .form-success {
-            background: rgba(139, 69, 19, 0.1);
-            color: var(--coffee-light);
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--neon-blue);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
@@ -735,7 +733,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--coffee-light);
+            color: var(--neon-blue);
         }
 
         .copyright {
@@ -875,8 +873,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <i class="fas fa-mug-hot"></i>
-                    Технологии с душой с 2010 года
+                    <i class="fas fa-rocket"></i>
+                    Инновации с 2010 года
                 </div>
                 <h1 class="hero-title">Архитекторы цифрового будущего</h1>
                 <p class="hero-subtitle">Создаем технологии, которые переопределяют возможности человечества. От квантовых вычислений до нейроинтерфейсов — мы строим будущее, о котором другие только мечтают.</p>
@@ -1077,17 +1075,17 @@
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
                     <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--coffee-light);">Центр квантовых исследований</h4>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Центр квантовых исследований</h4>
                         <p style="color: rgba(255, 255, 255, 0.7);">Калифорния, США - Разработка квантовых алгоритмов и создание квантовых процессоров</p>
                     </div>
                     
                     <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--coffee-light);">Лаборатория нейроинтерфейсов</h4>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Лаборатория нейроинтерфейсов</h4>
                         <p style="color: rgba(255, 255, 255, 0.7);">Цюрих, Швейцария - Исследования в области прямого взаимодействия мозг-компьютер</p>
                     </div>
                     
                     <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--coffee-light);">Институт космических технологий</h4>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Институт космических технологий</h4>
                         <p style="color: rgba(255, 255, 255, 0.7);">Токио, Япония - Разработка систем для освоения Луны и Марса</p>
                     </div>
                 </div>
