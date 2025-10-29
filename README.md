@@ -1,1123 +1,1244 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITCOFE | Архитекторы цифрового будущего</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Apple Service Pro - Ремонт техники Apple</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0A0A0A;
-            --secondary: #00F5FF;
-            --accent: #FF2E63;
-            --neon-blue: #00F5FF;
-            --neon-pink: #FF2E63;
-            --neon-purple: #9D4EDD;
-            --dark-bg: #0A0A0A;
-            --card-bg: rgba(30, 30, 30, 0.7);
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --gradient-primary: linear-gradient(135deg, #00F5FF 0%, #9D4EDD 50%, #FF2E63 100%);
-            --gradient-secondary: linear-gradient(135deg, #FF2E63 0%, #00F5FF 100%);
-            --neon-glow-blue: 0 0 20px rgba(0, 245, 255, 0.7);
-            --neon-glow-pink: 0 0 20px rgba(255, 46, 99, 0.7);
-            --section-spacing: 120px;
+            --primary-color: #ffffff;
+            --secondary-color: #000000;
+            --accent-color: #007AFF;
+            --text-color: #1D1D1F;
+            --gray-color: #86868B;
+            --transition-time: 0.6s;
+            --card-bg: #F5F5F7;
+            --header-height: 80px;
+            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+            --success-color: #34C759;
+        }
+
+        .dark-theme {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #0A84FF;
+            --text-color: #F5F5F7;
+            --gray-color: #86868B;
+            --card-bg: #1D1D1F;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
-            background: var(--dark-bg);
-            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
             line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Анимированный фон */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 46, 99, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
-            animation: bgPulse 15s ease-in-out infinite;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+            padding-top: var(--header-height);
+            -webkit-overflow-scrolling: touch;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 2rem;
         }
 
-        /* Современная навигация */
-        nav {
+        /* Header */
+        .header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            z-index: 1000;
+            height: var(--header-height);
+            border-bottom: 1px solid var(--gray-color);
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: white;
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            position: relative;
-            padding: 8px 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Герой секция */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 245, 255, 0.1);
-            color: var(--neon-blue);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            border: 1px solid rgba(0, 245, 255, 0.3);
-        }
-
-        .hero-title {
-            font-size: 4.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Кнопки */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            background: var(--gradient-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
+            gap: 12px;
+            font-size: 1.5rem;
             font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--neon-glow-blue);
+            color: var(--text-color);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
+        .logo i {
+            color: var(--accent-color);
         }
 
-        .btn-outline {
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .theme-toggle, .contact-btn {
             background: transparent;
-            border: 2px solid;
-            border-image: var(--gradient-primary) 1;
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .contact-btn {
+            background: var(--accent-color);
             color: white;
-            box-shadow: none;
         }
 
-        .btn-outline:hover {
-            background: var(--gradient-primary);
-            color: white;
+        .theme-toggle:hover, .contact-btn:hover {
+            transform: translateY(-2px);
         }
 
-        /* Секции */
-        section {
-            padding: var(--section-spacing) 0;
+        button:focus, .contact-item:focus {
+            outline: none;
         }
 
-        .section-header {
+        /* Hero Section */
+        .hero {
             text-align: center;
-            margin-bottom: 80px;
+            padding: 4rem 0;
         }
 
-        .section-label {
-            display: inline-block;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
+        .hero h1 {
+            font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            background: var(--gradient-primary);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-color), #5856D6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto;
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
 
-        /* Проекты */
-        .projects-grid {
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+        }
+
+        /* Premium Features */
+        .premium-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            gap: 2rem;
+            margin: 4rem 0;
         }
 
-        .project-card {
+        .premium-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .project-card::before {
+        .premium-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+            background: linear-gradient(90deg, var(--accent-color), #5856D6);
         }
 
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-image {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-category {
-            display: inline-block;
-            background: rgba(0, 245, 255, 0.1);
-            color: var(--neon-blue);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+        .premium-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent-color), #5856D6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
             color: white;
         }
 
-        .project-description {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.6;
+        .premium-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .project-tech {
+        .premium-card p {
+            color: var(--gray-color);
+            margin-bottom: 2rem;
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: var(--success-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .premium-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .premium-list li {
+            margin-bottom: 0.8rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
         }
 
-        .tech-tag {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+        .premium-list i {
+            color: var(--success-color);
         }
 
-        /* Технологии */
-        .tech-showcase {
-            background: rgba(30, 30, 30, 0.5);
+        .premium-button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .premium-button:hover {
+            background: #0056CC;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
             border-radius: 24px;
-            padding: 80px 60px;
-            margin-top: 80px;
-            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
-        .tech-grid {
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--accent-color), #5856D6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .service-info {
+            padding: 1.5rem;
+        }
+
+        .service-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-description {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            margin-top: 6rem;
+            padding: 4rem 0;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            gap: 2rem;
         }
 
-        .tech-card {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 16px;
-            text-align: center;
+        .portfolio-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
             transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
+            background: var(--card-bg);
         }
 
-        .tech-card:hover {
+        .portfolio-item:hover {
             transform: translateY(-5px);
-            border-color: var(--neon-blue);
-            box-shadow: var(--neon-glow-blue);
         }
 
-        .tech-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
         }
 
-        .tech-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: white;
+        .portfolio-info {
+            padding: 1.5rem;
         }
 
-        .tech-description {
-            color: rgba(255, 255, 255, 0.7);
+        .portfolio-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .portfolio-description {
+            color: var(--gray-color);
             line-height: 1.6;
         }
 
-        /* Контакты */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            margin-top: 60px;
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-content {
+            background: var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            max-width: 95%;
+            width: 100%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: auto;
+        }
+
+        .modal-large {
+            max-width: 95%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-color);
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--card-bg);
+            border-radius: 12px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 6rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--gray-color);
+            text-align: center;
+            color: var(--gray-color);
         }
 
         .contact-info {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
         .contact-item {
             display: flex;
-            align-items: flex-start;
-            gap: 20px;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 1.2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        .contact-icon {
-            font-size: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .contact-details h4 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .contact-details p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
+        .contact-link {
+            color: inherit;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: 1px solid var(--glass-border);
+            gap: 12px;
         }
 
-        .social-link:hover {
-            background: var(--gradient-primary);
-            transform: translateY(-3px);
+        .contact-link:hover {
+            color: var(--accent-color);
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-control {
-            padding: 15px 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Футер */
-        footer {
-            background: rgba(10, 10, 10, 0.9);
-            padding: 80px 0 30px;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .footer-info h3 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .footer-column h4 {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
+        /* Clickable phone and email styles */
+        .clickable-contact {
+            cursor: pointer;
             transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--neon-blue);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--glass-border);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 30px;
-            }
-            
-            .hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            
-            .tech-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+        .clickable-contact:hover {
+            color: var(--accent-color);
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .tech-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
             .container {
-                padding: 0 20px;
+                padding: 0.5rem;
             }
             
-            .hero-stats {
+            .header {
+                padding: 0.5rem 1rem;
+                height: 60px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+            
+            .theme-toggle, .contact-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .features {
                 flex-direction: column;
-                gap: 20px;
+                gap: 0.8rem;
+                padding: 0 1rem;
+            }
+            
+            .feature {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .premium-features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .premium-card {
+                padding: 1.5rem;
+                margin: 0 0.5rem;
+            }
+            
+            .premium-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .service-card {
+                margin: 0 0.5rem;
+            }
+            
+            .service-image {
+                height: 180px;
+                font-size: 2.5rem;
+            }
+            
+            .service-info {
+                padding: 1rem;
+            }
+            
+            .service-name {
+                font-size: 1.2rem;
+            }
+            
+            .portfolio {
+                margin-top: 3rem;
+                padding: 2rem 0;
+            }
+            
+            .portfolio h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            .portfolio-item {
+                margin: 0 0.5rem;
+            }
+            
+            .portfolio-image {
+                height: 200px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .contact-item {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .modal-large {
+                max-width: 95%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
-    <div class="animated-bg"></div>
-    <div class="grid-overlay"></div>
-
-    <!-- Навигация -->
-    <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                ITCOFE
-                <div class="logo-dot"></div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#projects">Проекты</a></li>
-                <li><a href="#tech">Технологии</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
+    <header class="header" id="mainHeader">
+        <div class="logo">
+            <i class="fab fa-apple"></i>
+            <span>Apple Service Pro</span>
         </div>
-    </nav>
-
-    <!-- Герой секция -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-rocket"></i>
-                    Инновации с 2010 года
-                </div>
-                <h1 class="hero-title">Архитекторы цифрового будущего</h1>
-                <p class="hero-subtitle">Создаем технологии, которые переопределяют возможности человечества. От квантовых вычислений до нейроинтерфейсов — мы строим будущее, о котором другие только мечтают.</p>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <a href="#projects" class="btn">Исследовать проекты <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn btn-outline">Присоединиться к нам</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value">$30B+</div>
-                        <div class="stat-label">Капитализация</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">150+</div>
-                        <div class="stat-label">Проектов</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">15</div>
-                        <div class="stat-label">Лет инноваций</div>
-                    </div>
-                </div>
-            </div>
+        <div class="nav-buttons">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                Тёмная тема
+            </button>
+            <button class="contact-btn" id="contactBtn">
+                <i class="fas fa-phone"></i>
+                Связаться
+            </button>
         </div>
-    </section>
-
-    <!-- Проекты -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Наши инновации</div>
-                <h2 class="section-title">Прорывные проекты</h2>
-                <p class="section-subtitle">Технологии, которые меняют правила игры в глобальном масштабе</p>
-            </div>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>Профессиональный ремонт техники Apple</h1>
+            <p>Официальный сервисный центр с оригинальными запчастями и гарантией до 2 лет. Вернём ваше устройство к жизни в кратчайшие сроки!</p>
             
-            <div class="projects-grid">
-                <!-- Проект 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Quantum Nexus">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Квантовые вычисления</span>
-                        <h3 class="project-title">Quantum Nexus</h3>
-                        <p class="project-description">Первая в мире коммерческая квантовая сеть, обеспечивающая мгновенную передачу данных на любые расстояния.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Квантовая запутанность</span>
-                            <span class="tech-tag">QKD</span>
-                            <span class="tech-tag">Квантовые процессоры</span>
-                        </div>
-                    </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Оригинальные запчасти</span>
                 </div>
-                
-                <!-- Проект 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="NeuraLink AI">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Искусственный интеллект</span>
-                        <h3 class="project-title">NeuraLink AI</h3>
-                        <p class="project-description">Когнитивная платформа, способная обучаться и адаптироваться в реальном времени без дополнительного программирования.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Глубокое обучение</span>
-                            <span class="tech-tag">Нейросети</span>
-                            <span class="tech-tag">AGI</span>
-                        </div>
-                    </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Гарантия до 2 лет</span>
                 </div>
-                
-                <!-- Проект 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="BioSync">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Биотехнологии</span>
-                        <h3 class="project-title">BioSync Implants</h3>
-                        <p class="project-description">Биосовместимые импланты, усиливающие когнитивные способности и обеспечивающие прямой интерфейс мозг-компьютер.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Нейроинтерфейсы</span>
-                            <span class="tech-tag">Биосенсоры</span>
-                            <span class="tech-tag">Нанотехнологии</span>
-                        </div>
-                    </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Бесплатная диагностика</span>
                 </div>
-                
-                <!-- Проект 4 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="EcoSphere">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Устойчивые технологии</span>
-                        <h3 class="project-title">EcoSphere AI</h3>
-                        <p class="project-description">Глобальная система мониторинга и оптимизации климата с предиктивной аналитикой экологических изменений.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">AI Аналитика</span>
-                            <span class="tech-tag">IoT Сенсоры</span>
-                            <span class="tech-tag">Климатическое моделирование</span>
-                        </div>
-                    </div>
+            </div>
+        </section>
+
+        <!-- Premium Features -->
+        <section class="premium-features">
+            <div class="premium-card">
+                <div class="premium-icon">
+                    <i class="fas fa-user-cog"></i>
                 </div>
-                
-                <!-- Проект 5 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="SpaceNet">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Космические технологии</span>
-                        <h3 class="project-title">SpaceNet Constellation</h3>
-                        <p class="project-description">Спутниковая сеть нового поколения, обеспечивающая глобальный охват интернетом со скоростью 10 Гбит/с.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">LEO Спутники</span>
-                            <span class="tech-tag">Квантовая связь</span>
-                            <span class="tech-tag">Фотонные вычисления</span>
-                        </div>
-                    </div>
+                <div class="premium-badge">Выезд специалиста</div>
+                <h3>Выезд инженера на дом или в офис</h3>
+                <p>Наш специалист приедет к вам в удобное время для диагностики и ремонта на месте</p>
+                <ul class="premium-list">
+                    <li><i class="fas fa-check"></i> Бесплатный выезд по городу</li>
+                    <li><i class="fas fa-check"></i> Работаем 7 дней в неделю</li>
+                    <li><i class="fas fa-check"></i> Диагностика на месте за 15 минут</li>
+                    <li><i class="fas fa-check"></i> Срочный выезд в течение часа</li>
+                </ul>
+                <button class="premium-button" id="engineerCallBtn">
+                    <i class="fas fa-calendar-check"></i>
+                    Вызвать инженера
+                </button>
+            </div>
+
+            <div class="premium-card">
+                <div class="premium-icon">
+                    <i class="fas fa-bolt"></i>
                 </div>
-                
-                <!-- Проект 6 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="MetaCore">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-category">Метавселенные</span>
-                        <h3 class="project-title">MetaCore Platform</h3>
-                        <p class="project-description">Децентрализованная платформа для создания и взаимодействия с фотореалистичными метавселенными.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Web3</span>
-                            <span class="tech-tag">VR/AR</span>
-                            <span class="tech-tag">Blockchain</span>
-                        </div>
-                    </div>
+                <div class="premium-badge">Мгновенная оплата</div>
+                <h3>Оплата в один клик</h3>
+                <p>Оплачивайте услуги моментально без лишних действий и ожиданий</p>
+                <ul class="premium-list">
+                    <li><i class="fas fa-check"></i> Безопасные платежи</li>
+                    <li><i class="fas fa-check"></i> Мгновенное подтверждение</li>
+                    <li><i class="fas fa-check"></i> Все виды карт и электронные кошельки</li>
+                    <li><i class="fas fa-check"></i> Сохранение платежных данных</li>
+                </ul>
+                <button class="premium-button" id="quickPayBtn">
+                    <i class="fas fa-credit-card"></i>
+                    Оплатить онлайн
+                </button>
+            </div>
+        </section>
+        
+        <main>
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be loaded here -->
+            </div>
+        </main>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio" id="portfolio">
+            <h2>Примеры наших работ</h2>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio items will be loaded here -->
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="contact-info">
+                <div class="contact-item" onclick="callPhone('+74951234567')">
+                    <i class="fas fa-clock"></i>
+                    <span>Пн-Вс: 9:00-21:00</span>
+                </div>
+                <div class="contact-item" onclick="callPhone('+74951234567')">
+                    <i class="fas fa-phone"></i>
+                    <span class="clickable-contact">+7 (495) 123-45-67</span>
+                </div>
+                <div class="contact-item" onclick="sendEmail('info@appleservice.pro')">
+                    <i class="fas fa-envelope"></i>
+                    <span class="clickable-contact">info@appleservice.pro</span>
+                </div>
+                <div class="contact-item" onclick="openMap()">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="clickable-contact">Москва, ул. Тверская, 15</span>
+                </div>
+            </div>
+            <p>© 2025 Apple Service Pro. Мы не являемся официальным представителем Apple Inc.</p>
+        </footer>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Связаться с нами</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item" onclick="callPhone('+74951234567')">
+                    <i class="fas fa-phone"></i>
+                    <span class="clickable-contact">+7 (495) 123-45-67</span>
+                </div>
+                <div class="contact-item" onclick="sendEmail('info@appleservice.pro')">
+                    <i class="fas fa-envelope"></i>
+                    <span class="clickable-contact">info@appleservice.pro</span>
+                </div>
+                <div class="contact-item" onclick="openMap()">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="clickable-contact">Москва, ул. Тверская, 15</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Пн-Вс: 9:00-21:00</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Технологии -->
-    <section id="tech">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Наш арсенал</div>
-                <h2 class="section-title">Передовые технологии</h2>
-                <p class="section-subtitle">Инструменты и платформы, которые позволяют нам создавать будущее</p>
+    <!-- Engineer Call Modal -->
+    <div class="modal" id="engineerModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Вызов инженера на дом</h3>
+                <button class="modal-close" id="engineerModalClose">&times;</button>
             </div>
-            
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <h3 class="tech-name">Квантовые вычисления</h3>
-                    <p class="tech-description">Используем квантовые процессоры для решения задач, недоступных классическим компьютерам</p>
+            <form id="engineerForm">
+                <div class="form-group">
+                    <label for="clientName">Ваше имя *</label>
+                    <input type="text" id="clientName" name="clientName" required placeholder="Иван Иванов">
                 </div>
                 
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="tech-name">Искусственный интеллект</h3>
-                    <p class="tech-description">Самообучающиеся системы, способные к творческому мышлению и решению сложных проблем</p>
+                <div class="form-group">
+                    <label for="clientPhone">Телефон *</label>
+                    <input type="tel" id="clientPhone" name="clientPhone" required placeholder="+7 (999) 123-45-67">
                 </div>
                 
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-dna"></i>
-                    </div>
-                    <h3 class="tech-name">Биотехнологии</h3>
-                    <p class="tech-description">Синтез биологии и технологий для создания революционных медицинских решений</p>
+                <div class="form-group">
+                    <label for="clientEmail">Email</label>
+                    <input type="email" id="clientEmail" name="clientEmail" placeholder="ivan@example.com">
                 </div>
                 
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="tech-name">Космические технологии</h3>
-                    <p class="tech-description">Разработка систем для освоения космоса и создания инфраструктуры за пределами Земли</p>
+                <div class="form-group">
+                    <label for="clientAddress">Адрес выезда *</label>
+                    <textarea id="clientAddress" name="clientAddress" rows="2" required placeholder="г. Москва, ул. Тверская, д. 15, кв. 10"></textarea>
                 </div>
-                
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="tech-name">Кибербезопасность</h3>
-                    <p class="tech-description">Квантово-устойчивые системы защиты для цифровой инфраструктуры будущего</p>
-                </div>
-                
-                <div class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3 class="tech-name">Web3 & Blockchain</h3>
-                    <p class="tech-description">Децентрализованные системы для создания прозрачной и безопасной цифровой экономики</p>
-                </div>
-            </div>
-            
-            <div class="tech-showcase">
-                <div class="section-header">
-                    <div class="section-label">Лаборатории будущего</div>
-                    <h2 class="section-title">Исследовательские центры</h2>
-                    <p class="section-subtitle">15 научно-исследовательских центров по всему миру, где рождаются прорывные технологии</p>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
-                    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Центр квантовых исследований</h4>
-                        <p style="color: rgba(255, 255, 255, 0.7);">Калифорния, США - Разработка квантовых алгоритмов и создание квантовых процессоров</p>
-                    </div>
-                    
-                    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Лаборатория нейроинтерфейсов</h4>
-                        <p style="color: rgba(255, 255, 255, 0.7);">Цюрих, Швейцария - Исследования в области прямого взаимодействия мозг-компьютер</p>
-                    </div>
-                    
-                    <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Институт космических технологий</h4>
-                        <p style="color: rgba(255, 255, 255, 0.7);">Токио, Япония - Разработка систем для освоения Луны и Марса</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Контакты -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Свяжитесь с нами</div>
-                <h2 class="section-title">Начните сотрудничество</h2>
-                <p class="section-subtitle">Готовы изменить будущее вместе с нами? Мы всегда открыты для новых вызовов</p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Главный офис</h4>
-                            <p>Innovation District, Tech City</p>
-                            <p>Silicon Valley, CA 94025</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Телефон</h4>
-                            <p>+1 (650) 123-4567</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>innovation@itcofe.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <form class="contact-form">
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" class="form-control" placeholder="Введите ваше имя" required>
+                        <label for="deviceType">Тип устройства *</label>
+                        <select id="deviceType" name="deviceType" required>
+                            <option value="">Выберите устройство</option>
+                            <option value="iphone">iPhone</option>
+                            <option value="macbook">MacBook</option>
+                            <option value="ipad">iPad</option>
+                            <option value="apple-watch">Apple Watch</option>
+                            <option value="airpods">AirPods</option>
+                            <option value="imac">iMac</option>
+                            <option value="other">Другое</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="Введите ваш email" required>
+                        <label for="deviceModel">Модель устройства</label>
+                        <input type="text" id="deviceModel" name="deviceModel" placeholder="iPhone 14 Pro">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Тема</label>
-                        <input type="text" id="subject" class="form-control" placeholder="Тема сообщения" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Сообщение</label>
-                        <textarea id="message" class="form-control" placeholder="Опишите ваш проект или идею" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn" style="align-self: flex-start;">Отправить заявку <i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </div>
-    </section>
+                </div>
 
-    <!-- Футер -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>ITCOFE</h3>
-                    <p>Создаем технологии, которые определяют будущее человечества. 15 лет инноваций, 150+ прорывных проектов, бесконечные возможности.</p>
+                <div class="form-group">
+                    <label for="problemDescription">Описание проблемы *</label>
+                    <textarea id="problemDescription" name="problemDescription" rows="4" placeholder="Опишите проблему с вашим устройством..." required></textarea>
                 </div>
-                
-                <div class="footer-column">
-                    <h4>Компания</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="#">Команда</a></li>
-                        <li><a href="#">Карьера</a></li>
-                        <li><a href="#">Новости</a></li>
-                    </ul>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredDate">Предпочтительная дата *</label>
+                        <input type="date" id="preferredDate" name="preferredDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredTime">Предпочтительное время *</label>
+                        <select id="preferredTime" name="preferredTime" required>
+                            <option value="">Выберите время</option>
+                            <option value="09:00-11:00">09:00 - 11:00</option>
+                            <option value="11:00-13:00">11:00 - 13:00</option>
+                            <option value="13:00-15:00">13:00 - 15:00</option>
+                            <option value="15:00-17:00">15:00 - 17:00</option>
+                            <option value="17:00-19:00">17:00 - 19:00</option>
+                            <option value="19:00-21:00">19:00 - 21:00</option>
+                        </select>
+                    </div>
                 </div>
-                
-                <div class="footer-column">
-                    <h4>Ресурсы</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Исследования</a></li>
-                        <li><a href="#">Публикации</a></li>
-                        <li><a href="#">Технологии</a></li>
-                        <li><a href="#">Форум</a></li>
-                    </ul>
+
+                <div class="form-group">
+                    <label for="additionalNotes">Дополнительные пожелания</label>
+                    <textarea id="additionalNotes" name="additionalNotes" rows="2" placeholder="Особые требования или комментарии..."></textarea>
                 </div>
-                
-                <div class="footer-column">
-                    <h4>Правовая информация</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Политика конфиденциальности</a></li>
-                        <li><a href="#">Условия использования</a></li>
-                        <li><a href="#">Патенты</a></li>
-                        <li><a href="#">Лицензии</a></li>
-                    </ul>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; font-weight: normal; cursor: pointer;">
+                        <input type="checkbox" name="agreeTerms" required style="margin-top: 2px;">
+                        <span>Я согласен на обработку персональных данных и с <a href="#" style="color: var(--accent-color);">условиями сервиса</a> *</span>
+                    </label>
                 </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 ITCOFE Technologies. Все права защищены. Капитализация: $30+ млрд.</p>
-            </div>
+
+                <button type="submit" class="premium-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Заказать выезд инженера
+                </button>
+            </form>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Параллакс эффект для фона
-        document.addEventListener('mousemove', (e) => {
-            const bg = document.querySelector('.animated-bg');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            bg.style.transform = `translate(-${x * 20}px, -${y * 20}px)`;
-        });
-
-        // Анимация появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Наблюдаем за элементами
-        document.querySelectorAll('.project-card, .tech-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Изменение навигации при скролле
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(10, 10, 10, 0.95)';
-                nav.style.backdropFilter = 'blur(30px)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 10, 0.9)';
-                nav.style.backdropFilter = 'blur(20px)';
+        // Данные услуг
+        const APPLE_SERVICES = [
+            {
+                id: 1,
+                name: "Ремонт iPhone",
+                icon: "fas fa-mobile-alt",
+                description: "Полный спектр услуг по ремонту iPhone любой модели. Замена экрана, аккумулятора, камеры и других компонентов.",
+                price: "от 1 990 ₽",
+                features: ["Диагностика бесплатно", "Оригинальные дисплеи", "Гарантия 1 год", "Ремонт за 30 минут"],
+                color: "linear-gradient(135deg, #007AFF, #5856D6)"
+            },
+            {
+                id: 2,
+                name: "Ремонт MacBook",
+                icon: "fas fa-laptop",
+                description: "Профессиональный ремонт MacBook всех поколений. Чистка, замена клавиатуры, матрицы и ремонт материнской платы.",
+                price: "от 3 990 ₽",
+                features: ["Бесплатная диагностика", "Оригинальные запчасти", "Срочный ремонт", "Гарантия 2 года"],
+                color: "linear-gradient(135deg, #34C759, #30D158)"
+            },
+            {
+                id: 3,
+                name: "Ремонт iPad",
+                icon: "fas fa-tablet-alt",
+                description: "Качественный ремонт iPad и iPad Pro. Восстановление экрана, замена батареи, ремонт после попадания влаги.",
+                price: "от 2 490 ₽",
+                features: ["Оригинальные стекла", "Сохранение данных", "Ремонт за 1 день", "Гарантия 1 год"],
+                color: "linear-gradient(135deg, #FF2D55, #FF375F)"
+            },
+            {
+                id: 4,
+                name: "Ремонт Apple Watch",
+                icon: "fas fa-clock",
+                description: "Ремонт умных часов Apple Watch. Замена стекла, дисплея, корпуса и аккумулятора.",
+                price: "от 1 790 ₽",
+                features: ["Оригинальные детали", "Герметизация", "Ремонт за 2 часа", "Гарантия 6 месяцев"],
+                color: "linear-gradient(135deg, #FF9500, #FF9F0A)"
+            },
+            {
+                id: 5,
+                name: "Ремонт AirPods",
+                icon: "fas fa-headphones",
+                description: "Восстановление работы AirPods. Замена аккумуляторов, ремонт кейсов, чистка динамиков.",
+                price: "от 990 ₽",
+                features: ["Оригинальные батареи", "Чистка ультразвуком", "Ремонт за 1 час", "Гарантия 3 месяца"],
+                color: "linear-gradient(135deg, #BF5AF2, #BF5AF2)"
+            },
+            {
+                id: 6,
+                name: "Восстановление данных",
+                icon: "fas fa-hdd",
+                description: "Срочное восстановление данных с любых устройств Apple после сбоев, падений и попадания жидкости.",
+                price: "от 2 990 ₽",
+                features: ["Бесплатный анализ", "Высокая вероятность", "Конфиденциальность", "Срочное выполнение"],
+                color: "linear-gradient(135deg, #32D74B, #30D158)"
             }
+        ];
+
+        // Данные портфолио
+        const PORTFOLIO_ITEMS = [
+            {
+                id: 1,
+                title: "Замена дисплея iPhone 12 Pro",
+                description: "Полная замена OLED-дисплея с сохранением оригинального True Tone. Устройство работает как новое!",
+                image: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=600&h=400&fit=crop",
+                category: "iPhone"
+            },
+            {
+                id: 2,
+                title: "Чистка и замена термопасты MacBook Pro",
+                description: "Профилактическая чистка системы охлаждения и замена термоинтерфейса. Устранены перегревы.",
+                image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=400&fit=crop",
+                category: "MacBook"
+            },
+            {
+                id: 3,
+                title: "Восстановление iPad Air после падения",
+                description: "Замена стекла и дигитайзера с калибровкой сенсорного слоя. Экран снова идеально откликается.",
+                image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=400&fit=crop",
+                category: "iPad"
+            },
+            {
+                id: 4,
+                title: "Ремонт Apple Watch Series 6",
+                description: "Замена аккумулятора и герметизация корпуса для сохранения водонепроницаемости.",
+                image: "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=600&h=400&fit=crop",
+                category: "Apple Watch"
+            },
+            {
+                id: 5,
+                title: "Замена клавиатуры MacBook Pro",
+                description: "Установка новой клавиатуры с полной калибровкой и тестированием всех клавиш.",
+                image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop",
+                category: "MacBook"
+            },
+            {
+                id: 6,
+                title: "Восстановление данных с поврежденного iPhone",
+                description: "Спасение важной информации после серьезного повреждения устройства водой.",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+                category: "Восстановление данных"
+            }
+        ];
+
+        // Функции для контактов
+        function callPhone(phoneNumber) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Мобильное устройство - звоним
+                window.location.href = `tel:${phoneNumber}`;
+            } else {
+                // Компьютер - показываем номер
+                alert(`Позвоните нам: ${phoneNumber}`);
+            }
+        }
+
+        function sendEmail(emailAddress) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Мобильное устройство - открываем почтовое приложение
+                window.location.href = `mailto:${emailAddress}`;
+            } else {
+                // Компьютер - открываем почтовый клиент
+                window.location.href = `mailto:${emailAddress}?subject=Запрос с сайта Apple Service Pro&body=Здравствуйте! Я заинтересован в ваших услугах.`;
+            }
+        }
+
+        function openMap() {
+            const address = "Москва, ул. Тверская, 15";
+            // Используем универсальную ссылку для всех устройств
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Для мобильных - открываем в нативном приложении карт
+                window.open(`https://maps.google.com/?q=${encodeURIComponent(address)}`, '_blank');
+            } else {
+                // Для компьютеров - открываем в новой вкладке
+                window.open(`https://yandex.ru/maps/?text=${encodeURIComponent(address)}`, '_blank');
+            }
+        }
+
+        // Инициализация приложения
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка услуг
+            loadServices();
+            
+            // Загрузка портфолио
+            loadPortfolio();
+            
+            // Настройка обработчиков событий
+            setupEventListeners();
+            
+            // Настройка формы выезда инженера
+            setupEngineerForm();
         });
 
-        // Плавная прокрутка для навигационных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        function loadServices() {
+            const servicesGrid = document.getElementById('servicesGrid');
+            servicesGrid.innerHTML = '';
+
+            APPLE_SERVICES.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                
+                serviceCard.innerHTML = `
+                    <div class="service-image" style="background: ${service.color}">
+                        <i class="${service.icon}"></i>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">
+                            <i class="${service.icon}"></i>
+                            ${service.name}
+                        </h3>
+                        <p class="service-description">${service.description}</p>
+                        <div class="service-price">${service.price}</div>
+                        <ul class="service-features">
+                            ${service.features.map(feature => `
+                                <li><i class="fas fa-check"></i>${feature}</li>
+                            `).join('')}
+                        </ul>
+                        <button class="service-button" data-service="${service.name}">
+                            <i class="fas fa-tools"></i>
+                            Заказать ремонт
+                        </button>
+                    </div>
+                `;
+                
+                servicesGrid.appendChild(serviceCard);
+            });
+
+            // Добавляем обработчики для кнопок услуг
+            document.querySelectorAll('.service-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceName = this.getAttribute('data-service');
+                    openContactModal();
+                    console.log('Выбрана услуга:', serviceName);
+                });
+            });
+        }
+
+        function loadPortfolio() {
+            const portfolioGrid = document.getElementById('portfolioGrid');
+            portfolioGrid.innerHTML = '';
+
+            PORTFOLIO_ITEMS.forEach(item => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'portfolio-item';
+                
+                portfolioItem.innerHTML = `
+                    <img class="portfolio-image" 
+                         src="${item.image}" 
+                         alt="${item.title}"
+                         loading="lazy">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">${item.title}</h3>
+                        <p class="portfolio-description">${item.description}</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent-color);">
+                            <i class="fas fa-tag"></i> ${item.category}
+                        </div>
+                    </div>
+                `;
+                
+                portfolioGrid.appendChild(portfolioItem);
+            });
+        }
+
+        function setupEventListeners() {
+            // Переключение темы
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // Модальные окна
+            document.getElementById('contactBtn').addEventListener('click', openContactModal);
+            document.getElementById('modalClose').addEventListener('click', closeContactModal);
+            document.getElementById('engineerCallBtn').addEventListener('click', openEngineerModal);
+            document.getElementById('engineerModalClose').addEventListener('click', closeEngineerModal);
+            document.getElementById('quickPayBtn').addEventListener('click', openQuickPayModal);
+            
+            // Закрытие модальных окон по клику на фон
+            document.getElementById('contactModal').addEventListener('click', function(e) {
+                if (e.target === this) closeContactModal();
+            });
+            
+            document.getElementById('engineerModal').addEventListener('click', function(e) {
+                if (e.target === this) closeEngineerModal();
+            });
+        }
+
+        function setupEngineerForm() {
+            const form = document.getElementById('engineerForm');
+            const dateInput = document.getElementById('preferredDate');
+            
+            // Устанавливаем минимальную дату (завтра)
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
+            dateInput.min = minDate;
+            
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
+                // Проверка согласия с условиями
+                const agreeCheckbox = document.querySelector('input[name="agreeTerms"]');
+                if (!agreeCheckbox.checked) {
+                    alert('Пожалуйста, согласитесь с условиями обработки персональных данных');
+                    return;
                 }
+
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                console.log('Заявка на выезд инженера:', data);
+                alert('Заявка успешно отправлена! Мы свяжемся с вами в течение 15 минут.');
+                
+                closeEngineerModal();
+                this.reset();
             });
-        });
+
+            // Маска для телефона
+            const phoneInput = document.getElementById('clientPhone');
+            phoneInput.addEventListener('input', function(e) {
+                let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                e.target.value = !x[2] ? x[1] : '+' + x[1] + ' (' + x[2] + (x[3] ? ') ' + x[3] + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '') : '');
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const themeToggle = document.getElementById('themeToggle');
+            const isDark = document.body.classList.contains('dark-theme');
+            
+            themeToggle.innerHTML = isDark 
+                ? '<i class="fas fa-sun"></i> Светлая тема'
+                : '<i class="fas fa-moon"></i> Тёмная тема';
+                
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openEngineerModal() {
+            document.getElementById('engineerModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEngineerModal() {
+            document.getElementById('engineerModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openQuickPayModal() {
+            alert('Функция оплаты в один клик будет доступна в ближайшее время!');
+        }
+
+        // Загрузка темы из localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i> Светлая тема';
+        }
     </script>
 </body>
 </html>
