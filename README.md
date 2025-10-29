@@ -838,20 +838,18 @@
             </div>
         </div>
     </div>
-
     <div class="animated-bg"></div>
     <div class="grid-overlay"></div>
-
     <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                ITCoffee
-                <div class="logo-dot"></div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#projects">Проекты</a></li>
-                <li><a href="#tech">Технологии</a></li>
-                <li><a href="#contact">Контакты</a></li>
+    <div class="container nav-container">
+    <a href="#" class="logo">
+ITCoffee
+<div class="logo-dot"></div>
+</a>
+<ul class="nav-links">
+<li><a href="#projects">Проекты</a></li>
+<li><a href="#tech">Технологии</a></li>
+<li><a href="#contact">Контакты</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
