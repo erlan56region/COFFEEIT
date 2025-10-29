@@ -1,18 +1,9 @@
-
-
-
-
-
-
-
-
-
-
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ITCOFE | Архитекторы цифрового будущего</title>
+    <title>ITCoffee | Технологии с душой</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -23,13 +14,15 @@
             --neon-blue: #00F5FF;
             --neon-pink: #FF2E63;
             --neon-purple: #9D4EDD;
+            --coffee-brown: #8B4513;
+            --coffee-light: #D2691E;
             --dark-bg: #0A0A0A;
             --card-bg: rgba(30, 30, 30, 0.7);
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --gradient-primary: linear-gradient(135deg, #00F5FF 0%, #9D4EDD 50%, #FF2E63 100%);
-            --gradient-secondary: linear-gradient(135deg, #FF2E63 0%, #00F5FF 100%);
-            --neon-glow-blue: 0 0 20px rgba(0, 245, 255, 0.7);
+            --gradient-primary: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #FF2E63 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF2E63 0%, #D2691E 100%);
+            --neon-glow-blue: 0 0 20px rgba(139, 69, 19, 0.7);
             --neon-glow-pink: 0 0 20px rgba(255, 46, 99, 0.7);
             --section-spacing: 120px;
         }
@@ -99,7 +92,7 @@
             width: 0%;
             background: var(--gradient-primary);
             border-radius: 4px;
-            transition: width 0.3s ease;
+            transition: width 0.05s linear;
         }
 
         .animated-bg {
@@ -110,9 +103,9 @@
             height: 100%;
             z-index: -2;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(255, 46, 99, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 40% 80%, rgba(210, 105, 30, 0.05) 0%, transparent 50%);
             animation: bgPulse 15s ease-in-out infinite;
         }
 
@@ -128,8 +121,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(139, 69, 19, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 69, 19, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -1;
             animation: gridMove 20s linear infinite;
@@ -214,7 +207,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--neon-blue);
+            color: var(--coffee-light);
         }
 
         .nav-links a:hover::after {
@@ -268,7 +261,7 @@
         }
 
         .mobile-nav-links a:hover {
-            color: var(--neon-blue);
+            color: var(--coffee-light);
         }
 
         .menu-overlay {
@@ -307,14 +300,14 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(0, 245, 255, 0.1);
-            color: var(--neon-blue);
+            background: rgba(139, 69, 19, 0.1);
+            color: var(--coffee-light);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 30px;
-            border: 1px solid rgba(0, 245, 255, 0.3);
+            border: 1px solid rgba(139, 69, 19, 0.3);
         }
 
         .hero-title {
@@ -378,7 +371,7 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
         }
 
         .btn-outline {
@@ -492,8 +485,8 @@
 
         .project-category {
             display: inline-block;
-            background: rgba(0, 245, 255, 0.1);
-            color: var(--neon-blue);
+            background: rgba(139, 69, 19, 0.1);
+            color: var(--coffee-light);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -554,7 +547,7 @@
 
         .tech-card:hover {
             transform: translateY(-5px);
-            border-color: var(--neon-blue);
+            border-color: var(--coffee-light);
             box-shadow: var(--neon-glow-blue);
         }
 
@@ -668,8 +661,8 @@
 
         .form-control:focus {
             outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
+            border-color: var(--coffee-light);
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
         }
 
         textarea.form-control {
@@ -685,8 +678,8 @@
         }
 
         .form-success {
-            background: rgba(0, 245, 255, 0.1);
-            color: var(--neon-blue);
+            background: rgba(139, 69, 19, 0.1);
+            color: var(--coffee-light);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
@@ -742,7 +735,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--neon-blue);
+            color: var(--coffee-light);
         }
 
         .copyright {
@@ -842,7 +835,7 @@
 <body>
     <div class="loader" id="pageLoader">
         <div class="loader-content">
-            <div class="loader-logo">ITCOFE</div>
+            <div class="loader-logo">ITCoffee</div>
             <div class="loader-bar">
                 <div class="loader-progress" id="loaderProgress"></div>
             </div>
@@ -855,7 +848,7 @@
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo">
-                ITCOFE
+                ITCoffee
                 <div class="logo-dot"></div>
             </a>
             <ul class="nav-links">
@@ -882,8 +875,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <i class="fas fa-rocket"></i>
-                    Инновации с 2010 года
+                    <i class="fas fa-mug-hot"></i>
+                    Технологии с душой с 2010 года
                 </div>
                 <h1 class="hero-title">Архитекторы цифрового будущего</h1>
                 <p class="hero-subtitle">Создаем технологии, которые переопределяют возможности человечества. От квантовых вычислений до нейроинтерфейсов — мы строим будущее, о котором другие только мечтают.</p>
@@ -1084,17 +1077,17 @@
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
                     <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Центр квантовых исследований</h4>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--coffee-light);">Центр квантовых исследований</h4>
                         <p style="color: rgba(255, 255, 255, 0.7);">Калифорния, США - Разработка квантовых алгоритмов и создание квантовых процессоров</p>
                     </div>
                     
                     <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Лаборатория нейроинтерфейсов</h4>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--coffee-light);">Лаборатория нейроинтерфейсов</h4>
                         <p style="color: rgba(255, 255, 255, 0.7);">Цюрих, Швейцария - Исследования в области прямого взаимодействия мозг-компьютер</p>
                     </div>
                     
                     <div style="background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--neon-blue);">Институт космических технологий</h4>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--coffee-light);">Институт космических технологий</h4>
                         <p style="color: rgba(255, 255, 255, 0.7);">Токио, Япония - Разработка систем для освоения Луны и Марса</p>
                     </div>
                 </div>
@@ -1139,7 +1132,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p>innovation@itcofe.com</p>
+                            <p>innovation@itcoffee.com</p>
                         </div>
                     </div>
                     
@@ -1190,7 +1183,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>ITCOFE</h3>
+                    <h3>ITCoffee</h3>
                     <p>Создаем технологии, которые определяют будущее человечества. 15 лет инноваций, 150+ прорывных проектов, бесконечные возможности.</p>
                 </div>
                 
@@ -1226,7 +1219,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 ITCOFE Technologies. Все права защищены. Капитализация: $30+ млрд.</p>
+                <p>&copy; 2023 ITCoffee Technologies. Все права защищены. Капитализация: $30+ млрд.</p>
             </div>
         </div>
     </footer>
@@ -1236,11 +1229,16 @@
     </a>
 
     <script>
-        window.addEventListener('load', function() {
+        // Индикатор загрузки - ровно 5 секунд
+        document.addEventListener('DOMContentLoaded', function() {
             const loader = document.getElementById('pageLoader');
             const progress = document.getElementById('loaderProgress');
             
             let width = 0;
+            const totalTime = 5000; // 5 секунд
+            const steps = 100;
+            const stepTime = totalTime / steps; // 50 мс на каждый шаг
+            
             const interval = setInterval(() => {
                 if (width >= 100) {
                     clearInterval(interval);
@@ -1248,12 +1246,13 @@
                         loader.classList.add('hidden');
                     }, 500);
                 } else {
-                    width += 5;
+                    width += 1;
                     progress.style.width = width + '%';
                 }
-            }, 50);
+            }, stepTime);
         });
 
+        // Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -1278,6 +1277,7 @@
             });
         });
 
+        // Параллакс эффект для фона
         document.addEventListener('mousemove', (e) => {
             const bg = document.querySelector('.animated-bg');
             const x = e.clientX / window.innerWidth;
@@ -1286,6 +1286,7 @@
             bg.style.transform = `translate(-${x * 20}px, -${y * 20}px)`;
         });
 
+        // Анимация появления элементов при скролле
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1307,6 +1308,7 @@
             observer.observe(el);
         });
 
+        // Изменение навигации при скролле
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             const scrollToTop = document.getElementById('scrollToTop');
@@ -1322,6 +1324,7 @@
             }
         });
 
+        // Плавная прокрутка для навигационных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1339,6 +1342,7 @@
             });
         });
 
+        // Валидация формы
         const contactForm = document.getElementById('contactForm');
         
         contactForm.addEventListener('submit', function(e) {
